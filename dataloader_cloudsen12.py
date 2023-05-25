@@ -1,7 +1,9 @@
-import pandas as pd
-import numpy as np
 import pathlib
+
+import numpy as np
+import pandas as pd
 import torch
+
 
 def load_data(path_root, shape):
     """
@@ -16,22 +18,51 @@ def load_data(path_root, shape):
 
     """
     total = {
-        "B1": np.memmap(path_root / "L1C_B1.dat", dtype=np.int16, mode="r", shape=shape),
-        "B2": np.memmap(path_root / "L1C_B2.dat", dtype=np.int16, mode="r", shape=shape),
-        "B3": np.memmap(path_root / "L1C_B3.dat", dtype=np.int16, mode="r", shape=shape),
-        "B4": np.memmap(path_root / "L1C_B4.dat", dtype=np.int16, mode="r", shape=shape),
-        "B5": np.memmap(path_root / "L1C_B5.dat", dtype=np.int16, mode="r", shape=shape),
-        "B6": np.memmap(path_root / "L1C_B6.dat", dtype=np.int16, mode="r", shape=shape),
-        "B7": np.memmap(path_root / "L1C_B7.dat", dtype=np.int16, mode="r", shape=shape),
-        "B8": np.memmap(path_root / "L1C_B8.dat", dtype=np.int16, mode="r", shape=shape),
-        "B8A": np.memmap(path_root / "L1C_B8A.dat", dtype=np.int16, mode="r", shape=shape),
-        "B9": np.memmap(path_root / "L1C_B9.dat", dtype=np.int16, mode="r", shape=shape),
-        "B10": np.memmap(path_root / "L1C_B10.dat", dtype=np.int16, mode="r", shape=shape),
-        "B11": np.memmap(path_root / "L1C_B11.dat", dtype=np.int16, mode="r", shape=shape),
-        "B12": np.memmap(path_root / "L1C_B12.dat", dtype=np.int16, mode="r", shape=shape),
-        "LABEL": np.memmap(path_root / "LABEL_manual_hq.dat", dtype=np.int8, mode="r", shape=shape)
+        "B1": np.memmap(
+            path_root / "L1C_B1.dat", dtype=np.int16, mode="r", shape=shape
+        ),
+        "B2": np.memmap(
+            path_root / "L1C_B2.dat", dtype=np.int16, mode="r", shape=shape
+        ),
+        "B3": np.memmap(
+            path_root / "L1C_B3.dat", dtype=np.int16, mode="r", shape=shape
+        ),
+        "B4": np.memmap(
+            path_root / "L1C_B4.dat", dtype=np.int16, mode="r", shape=shape
+        ),
+        "B5": np.memmap(
+            path_root / "L1C_B5.dat", dtype=np.int16, mode="r", shape=shape
+        ),
+        "B6": np.memmap(
+            path_root / "L1C_B6.dat", dtype=np.int16, mode="r", shape=shape
+        ),
+        "B7": np.memmap(
+            path_root / "L1C_B7.dat", dtype=np.int16, mode="r", shape=shape
+        ),
+        "B8": np.memmap(
+            path_root / "L1C_B8.dat", dtype=np.int16, mode="r", shape=shape
+        ),
+        "B8A": np.memmap(
+            path_root / "L1C_B8A.dat", dtype=np.int16, mode="r", shape=shape
+        ),
+        "B9": np.memmap(
+            path_root / "L1C_B9.dat", dtype=np.int16, mode="r", shape=shape
+        ),
+        "B10": np.memmap(
+            path_root / "L1C_B10.dat", dtype=np.int16, mode="r", shape=shape
+        ),
+        "B11": np.memmap(
+            path_root / "L1C_B11.dat", dtype=np.int16, mode="r", shape=shape
+        ),
+        "B12": np.memmap(
+            path_root / "L1C_B12.dat", dtype=np.int16, mode="r", shape=shape
+        ),
+        "LABEL": np.memmap(
+            path_root / "LABEL_manual_hq.dat", dtype=np.int8, mode="r", shape=shape
+        ),
     }
     return total
+
 
 class CloudDataset(torch.utils.data.Dataset):
     def __init__(self, root, type, model="reg"):
@@ -96,12 +127,12 @@ class CloudDataset(torch.utils.data.Dataset):
             self.X["B9"][index],
             self.X["B10"][index],
             self.X["B11"][index],
-            self.X["B12"][index]
+            self.X["B12"][index],
         )
 
         # Concatenate the bands
-        X = np.stack(X, axis=0)/10000
-        
+        X = np.stack(X, axis=0) / 10000
+
         X = torch.from_numpy(X).type(torch.float)
         if self.model == "reg":
             # Convert to binary classification, 0 for easy and 1 for hard
@@ -110,8 +141,8 @@ class CloudDataset(torch.utils.data.Dataset):
             y = torch.from_numpy(self.y[index]).type(torch.long)
         return X, y
 
+
 # Create dataloader
 training_data = CloudDataset(root="/data3/cloudsen12_high/", type="train")
 validation_data = CloudDataset(root="/data3/cloudsen12_high/", type="val")
 testing_data = CloudDataset(root="/data3/cloudsen12_high/", type="test")
-

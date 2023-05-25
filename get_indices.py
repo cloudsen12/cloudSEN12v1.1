@@ -1,14 +1,13 @@
-import timm
-import torch
 import numpy as np
 import pandas as pd
 import segmentation_models_pytorch as smp
+import timm
+import torch
 
-from utils import cloudsen12_table, kappaset_table, cloudcatalogue_table
-from dataloader_kappaset import kappaset_files
 from dataloader_cloudcatalogue import cloudcatalogue_files
-from dataloader_cloudsen12 import training_data, validation_data, testing_data
-
+from dataloader_cloudsen12 import testing_data, training_data, validation_data
+from dataloader_kappaset import kappaset_files
+from utils import cloudcatalogue_table, cloudsen12_table, kappaset_table
 
 # Hardness index model
 HImodel = timm.create_model("resnet10t", pretrained=True, num_classes=1, in_chans=13)
@@ -28,7 +27,9 @@ TImodel.cuda()
 train_cloudsen12_db = cloudsen12_table(training_data, HImodel, TImodel)
 val_cloudsen12_db = cloudsen12_table(validation_data, HImodel, TImodel)
 test_cloudsen12_db = cloudsen12_table(testing_data, HImodel, TImodel)
-cloudsen12_db = pd.concat([train_cloudsen12_db, val_cloudsen12_db, test_cloudsen12_db], axis=0)
+cloudsen12_db = pd.concat(
+    [train_cloudsen12_db, val_cloudsen12_db, test_cloudsen12_db], axis=0
+)
 cloudsen12_db.to_csv("results/cloudsen12_indices.csv", index=False)
 
 # Kappaset table with TI and HI indices
@@ -38,4 +39,3 @@ train_kappaset_db.to_csv("results/kappaset_indices.csv", index=False)
 # CloudCatalogue table with TI and HI indices
 train_cloudcatalogue_db = cloudcatalogue_table(cloudcatalogue_files, HImodel, TImodel)
 train_cloudcatalogue_db.to_csv("results/cloudcatalogue_indices.csv", index=False)
-
