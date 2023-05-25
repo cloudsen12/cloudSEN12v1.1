@@ -24,7 +24,7 @@ cd cloudSEN12v1.1
 
 ## License
 
-The code is licensed under the [MIT License](LICENSE). CloudSEN12v1.1 is licensed under the [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+The code is licensed under the [MIT License](LICENSE). CloudSEN12v1.1 dataset and pre-trained models are licensed under the [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 
 ## Citation
 
