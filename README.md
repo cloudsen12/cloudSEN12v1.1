@@ -31,16 +31,15 @@ The code is licensed under the [MIT License](LICENSE). CloudSEN12v1.1 dataset an
 If you find this work useful for your research, please consider citing:
 
 ```
-@article{your_paper_citation,
-  title={Lessons learned from CloudSEN12 dataset: Identifying incorrect annotations in cloud semantic segmentation datasets},
-  author={Author 1, Author 2, Author 3},
-  journal={Journal Name},
-  year={YYYY},
-  volume={VOL},
-  number={NUM},
-  pages={XXX-XXX},
-  doi={XXX/XXX}
+@inproceedings{aybar_lessons_2023,
+	title = {Lessons {Learned} {From} {Cloudsen12} {Dataset}: {Identifying} {Incorrect} {Annotations} in {Cloud} {Semantic} {Segmentation} {Datasets}},
+	url = {https://ieeexplore.ieee.org/document/10282381},
+	doi = {10.1109/IGARSS52108.2023.10282381},
+	booktitle = {{IGARSS} 2023 - 2023 {IEEE} {International} {Geoscience} and {Remote} {Sensing} {Symposium}},
+	author = {Aybar, Cesar and Montero, David and Mateo-García, Gonzalo and Gómez-Chova, Luis},
+	month = jul,
+	year = {2023},
+	note = {ISSN: 2153-7003},
+	pages = {892--895}
 }
 ```
-
-For any questions or inquiries, please contact [email@example.com](mailto:email@example.com).
