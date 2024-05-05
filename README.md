@@ -1,6 +1,6 @@
 # cloudSEN12v1.1
 
-This repository contains the code for the paper "Lessons learned from CloudSEN12 dataset: Identifying incorrect annotations in cloud semantic segmentation datasets" [https://doi.org/XXX/XXX](https://doi.org/XXX/XXX).
+This repository contains the code for the paper "Lessons learned from CloudSEN12 dataset: Identifying incorrect annotations in cloud semantic segmentation datasets" [https://doi.org/10.1109/IGARSS52108.2023.10282381](https://doi.org/10.1109/IGARSS52108.2023.10282381).
 
 ## Download the pretrained models
 
